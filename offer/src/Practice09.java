@@ -1,19 +1,36 @@
-public class Practice09 {
+import java.util.Deque;
+import java.util.LinkedList;
 
+public class Practice09 {
+    public static void main(String[] args) {
+        CQueue cQueue = new CQueue();
+        System.out.println(cQueue.deleteHead());
+    }
 }
 
 class CQueue{
+    Deque<Integer> stack1;//插入栈
+    Deque<Integer> stack2;//删除栈
     public CQueue(){
-
+        stack1 = new LinkedList<>();
+        stack2 = new LinkedList<>();
     }
 
     public void appendTail(int value){
-
+        stack1.push(value);
     }
 
     public  int deleteHead(){
+        if (stack2.isEmpty()){
+            while (!stack1.isEmpty())
+                stack2.push(stack1.pop());
+        }
 
-        return -1;
+        if (stack2.isEmpty())
+            return -1;
+        else {
+            return stack2.pop();
+        }
     }
 }
 
